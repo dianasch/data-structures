@@ -20,7 +20,7 @@ def all_houses(filename):
 
     for line in file:
       line = line.rstrip()
-      list_line = line.split()
+      list_line = line.split('|')
 
       houses.add(list_line[2])
     
@@ -36,37 +36,53 @@ def students_by_cohort(filename, cohort='All'):
 
     Names are sorted in alphabetical order. If a cohort isn't
     given, return a list of all students. For example:
-      >>> students_by_cohort('cohort_data.txt')
-      ['Adrian Pucey', 'Alicia Spinnet', ..., 'Zacharias Smith']
+    >>> students_by_cohort('cohort_data.txt')
+    ['Adrian Pucey', 'Alicia Spinnet', ..., 'Zacharias Smith']
 
-      >>> students_by_cohort('cohort_data.txt', cohort='Fall 2015')
-      ['Angelina Johnson', 'Cho Chang', ..., 'Terence Higgs', 'Theodore Nott']
+    >>> students_by_cohort('cohort_data.txt', cohort='Fall 2015')
+    ['Angelina Johnson', 'Cho Chang', ..., 'Terence Higgs', 'Theodore Nott']
 
-      >>> students_by_cohort('cohort_data.txt', cohort='Winter 2016')
-      ['Adrian Pucey', 'Andrew Kirke', ..., 'Roger Davies', 'Susan Bones']
+    >>> students_by_cohort('cohort_data.txt', cohort='Winter 2016')
+    ['Adrian Pucey', 'Andrew Kirke', ..., 'Roger Davies', 'Susan Bones']
 
-      >>> students_by_cohort('cohort_data.txt', cohort='Spring 2016')
-      ['Cormac McLaggen', 'Demelza Robins', ..., 'Zacharias Smith']
+    >>> students_by_cohort('cohort_data.txt', cohort='Spring 2016')
+    ['Cormac McLaggen', 'Demelza Robins', ..., 'Zacharias Smith']
 
-      >>> students_by_cohort('cohort_data.txt', cohort='Summer 2016')
-      ['Alicia Spinnet', 'Dean Thomas', ..., 'Terry Boot', 'Vincent Crabbe']
+    >>> students_by_cohort('cohort_data.txt', cohort='Summer 2016')
+    ['Alicia Spinnet', 'Dean Thomas', ..., 'Terry Boot', 'Vincent Crabbe']
 
     Arguments:
-      - filename (str): the path to a data file
-      - cohort (str): optional, the name of a cohort
+    - filename (str): the path to a data file
+    - cohort (str): optional, the name of a cohort
 
     Return:
-      - list[list]: a list of lists
+    - list[list]: a list of lists
     """
+    file = open(filename)
 
     students = []
+    
+    for line in file:
+      line = line.rstrip()
+      line_list = line.split('|')
+
+      student_name = line_list[0] + line_list[1]
+      
+      if cohort == "All":
+        students.append(student_name)
+
+      
+
+
+
+    
 
     # TODO: replace this with your code
 
     return sorted(students)
 
 
-def all_names_by_house(filename):
+    def all_names_by_house(filename):
     """Return a list that contains rosters for all houses, ghosts, instructors.
 
     Rosters appear in this order:
