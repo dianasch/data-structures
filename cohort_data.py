@@ -19,10 +19,14 @@ def all_houses(filename):
     houses = set()
 
     for line in file:
-      line = line.rstrip()
-      list_line = line.split('|')
+        line = line.rstrip()
+        list_line = line.split('|')
+        house = list_line[2]
 
-      houses.add(list_line[2])
+        if house == "":
+            continue
+        else:
+            houses.add(house)
     
     # TODO: replace this with your code
 
@@ -63,26 +67,27 @@ def students_by_cohort(filename, cohort='All'):
     students = []
     
     for line in file:
-      line = line.rstrip()
-      line_list = line.split('|')
+        line = line.rstrip()
+        line_list = line.split('|')
 
-      student_name = line_list[0] + line_list[1]
+        student_name = line_list[0] + line_list[1]
+        cohort_name = line_list[4]
       
-      if cohort == "All":
-        students.append(student_name)
+        if cohort == "All":
+            if cohort_name == "":
+                continue
+            else:
+                students.append(student_name)
 
-      
-
-
-
-    
-
-    # TODO: replace this with your code
+        elif cohort == cohort_name:
+            students.append(student_name)
 
     return sorted(students)
 
+      
 
-    def all_names_by_house(filename):
+
+def all_names_by_house(filename):
     """Return a list that contains rosters for all houses, ghosts, instructors.
 
     Rosters appear in this order:
